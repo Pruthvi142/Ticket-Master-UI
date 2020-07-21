@@ -29,6 +29,7 @@ class Login extends Component {
     const redirect=()=>{
         return this.props.history.push("/")
     }
+    // console.log("loginData",formData)
     this.props.dispatch(startLoginUser(formData,redirect))
     this.setState({
         email:'',

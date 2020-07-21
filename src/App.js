@@ -1,22 +1,39 @@
 import React from 'react'
 import {BrowserRouter, Route,Link,Switch} from 'react-router-dom'
 import{connect} from 'react-redux'
+import './nav.css'
+//   users
 import home from './components/static/home'
 import Login from './components/auth/Login'
-import customer from'./components/Customers/Customers'
-import showCust from './components/Customers/Showcust'
-import employee from './components/Employees/Employee'
-import department from './components/Departments/Department'
 import Register from './components/auth/Register'
 import {startLogOutUser} from './Actions/userAction'
-import './nav.css'
-import Ticket from './components/Tickets/Ticket'
+// customers
+import showCust from './components/Customers/Showcust'
+import TableCust from './components/Customers/TableCust'
+import AddCust from './components/Customers/AddCust'
+import EditCust from './components/Customers/EditCust'
+// Departments
+import TableDep from './components/Departments/TableDep'
+import AddDep from './components/Departments/AddDep'
+import ShowDep from './components/Departments/ShowDep'
+import EditDept from './components/Departments/EditDept'
+// Employees
+import EmpTable from './components/Employees/EmpTable'
+import AddEmp from './components/Employees/AddEmp'
+import EditEmp from './components/Employees/EditEmp'
+import ShowEmp from './components/Employees/ShowEmp'
+// Tickets
+import Ticket from './components/Tickets/TableTicket'
+import AddTicket from './components/Tickets/AddTicket'
+import ShowTicket from './components/Tickets/ShowTicket'
+import EditTicket from './components/Tickets/EditTicket'
 function App(props)
 {
     const handleLogOut=()=>{
         props.dispatch(startLogOutUser())
 
     }
+    console.log( "login",props.user)
     return(
     
            <BrowserRouter>
@@ -31,15 +48,14 @@ function App(props)
                             <Link to ="/department">Departments</Link>
                             <Link to ="/employee">Employees</Link>
                             <Link to="/ticket">Tickets</Link>
-                           
-                           <Link to="#" onClick={handleLogOut} >Log out</Link>
+                            <Link to="#" onClick={handleLogOut} >Log out</Link>
                          
                        </div>
                    ):(
                        <div>
             <Link to="/">Home</Link>
-            <Link to="users/login">Log in</Link>
-           <Link to="/register">Register</Link>
+            <Link to="/users/login">Log in</Link>
+           <Link to="/users/register">Register</Link>
                        </div>
                    )
                }
@@ -48,23 +64,38 @@ function App(props)
            
                </header>
           
-           
+                    {/* users */}
            <Route path="/" component={home} exact={true}/>
            <Route path="/users/login"component={Login} />
-           <Route path="/register" component={Register}/>
-           <Route path="/customer" component={customer}/>
+           <Route path="/users/register" component={Register}/>
+                     {/* Customers */}
+           <Route path="/customer" component={TableCust}/>
+           <Route path="/addcust" component={AddCust}/>
            <Route path="/show/:id" component={showCust}/>
-           <Route path ="/department" component={department}/>
-           {/* <Route path ="/showdept/:id" component={showdept}/> */}
-           <Route path="/employee" component={employee}/>
-         {/* //  <Route path="/showemp/:id"component={showEmp}/> */}
-         <Route path ="/ticket" component={Ticket}/>
-         {/* <Route path ="/showticket/:id" component={showTicket}/> */}
+           <Route path="/EditCust/:id" component={EditCust}/>
+                    {/* Departments */}
+           <Route path ="/department" component={TableDep}/>
+           <Route path="/addDept"      component={AddDep}/>
+           <Route path="/showDept/:id" component={ShowDep}/>
+           <Route path="/EditDept/:id" component={EditDept}/>   
+                    {/* Employees */}
+           <Route path="/employee" component={EmpTable}/>
+           <Route path="/addemp" component={AddEmp}/>
+           <Route path="/showemp/:id" component={ShowEmp}/>
+           <Route path ="/editemp/:id" component={EditEmp}/>
+                    {/* Tickets */}
+           <Route path ="/ticket" component={Ticket}/>
+           <Route path="/addticket" component={AddTicket}/>
+           <Route path="/showticket/:id" component={ShowTicket}/>
+           <Route path="/editticket/:id" component={EditTicket}/>
+
+          
 
            
         
            
            
+
           
            </div>
            </BrowserRouter>

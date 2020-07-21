@@ -10,6 +10,7 @@ export const startLoginUser=(formData,redirect)=>{
     return(dispatch)=>{
         axios.post('http://dct-tm.herokuapp.com/api/users/login',formData)
         .then((response)=>{
+           // console.log("aios",response.data)
             if(response.data.hasOwnProperty('error'))
             {
                 alert(response.data.error)
@@ -17,9 +18,9 @@ export const startLoginUser=(formData,redirect)=>{
             else
             {
                 alert("login sucessfull")
-                console.log(response.data.token)
+                //console.log(response.data.token)
                 localStorage.setItem("authToken",response.data.token)
-            axios.get('http://dct-tm.herokuapp.com/api/users/account',{headers:{'x-auth':localStorage.getItem('authToken')}})
+            axios.get('https://dct-tm.herokuapp.com/api/users/account',{headers:{'x-auth':localStorage.getItem('authToken')}})
                .then((response)=>{
                  const users=response.data
              
@@ -40,7 +41,7 @@ export const startLoginUser=(formData,redirect)=>{
 // to get  users account info nd set to store 
 export const startGetUser=()=>{
     return(dispatch)=>{
-        axios.get('http://dct-tm.herokuapp.com/api/users/account',{headers:{'x-auth':localStorage.getItem('authToken')}})
+        axios.get('https://dct-tm.herokuapp.com/api/users/account',{headers:{'x-auth':localStorage.getItem('authToken')}})
         .then((response)=>{
             const users=response.data
             // console.log( "login",users)
@@ -54,9 +55,9 @@ export const startGetUser=()=>{
 // Allow to  user registration 
 export const startRegisterUser=(FormData,redirect)=>{
     return(dispatch)=>{
-        axios.post('http://dct-tm.herokuapp.com/api/users/register',FormData)
+        axios.post('https://dct-tm.herokuapp.com/api/users/register',FormData)
      .then((response)=>{
-         console.log(response.data)
+         //console.log(response.data)
          if(response.data.hasOwnProperty('errors'))
          {
              alert(response.data.message)
@@ -76,7 +77,7 @@ export const startRegisterUser=(FormData,redirect)=>{
 //Allow a  user to logout 
 export const startLogOutUser=()=>{
     return(dispatch)=>{
-        axios.delete('http://dct-tm.herokuapp.com/api/users/logout',{headers:{'x-auth':localStorage.getItem('authToken')}})
+        axios.delete('https://dct-tm.herokuapp.com/api/users/logout',{headers:{'x-auth':localStorage.getItem('authToken')}})
         .then((response)=>{
             if(response.data.notice)
             {

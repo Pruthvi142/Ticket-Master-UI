@@ -5,45 +5,19 @@ import './table.css'
 
 
 class Department extends Component {
-    constructor(props)
-    {
-        super(props)
-        this.state={
-            name:'',
-            show:false
-        }
-    }
+   
     componentDidMount() {
-        if(this.props.dept.length==0)
+        if(this.props.dept.length===0)
         {
             this.props.dispatch(startGetDept())  
         }
       
     }
-    handleChange=(e)=>{
-        this.setState({
-            [e.target.name]:e.target.value
-        })
-    }
+   
     showForm=()=>{
-        this.setState({
-            show:true
-        })
+        this.props.history.push("/addDept")
     }
-    handleSubmit=(e)=>{ 
-        e.preventDefault()
-        const formData={
-            name:this.state.name
-        }
-        this.props.dispatch(startPostDept(formData))
-        this.setState({
-            show:false
-        })
-        this.setState({
-            name:''
-        })
-
-    }
+  
     handleDelete=(id)=>{
      
         const confirmRemove = window.confirm("Are you sure?")
@@ -54,23 +28,19 @@ class Department extends Component {
         }
     }
    
+    showDept=(id)=>{
+        this.props.history.push(`/showDept/${id}`)
+
+    }
     render() {
        
-        console.log("depart",this.props.dept)
+        // console.log("depart",this.props.dept)
         
         return (
             <div>
-                {
-          this.state.show? (
-             <div>
-          <h1>Department</h1>
-        <form onSubmit={this.handleSubmit}>
-            <label>Department</label>
-            <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
-            <br/>
-            <input type="submit" className="btn1"/>
-        </form>
-        </div>):(<div>
+             
+         
+        
            <h1> Departments- {this.props.dept.length}</h1>
                   <table className="table1">
                         {
@@ -81,7 +51,7 @@ class Department extends Component {
                                 <td>{ele.name}</td>
                                
                              
-                                <td> <button class="button1" onClick={()=>{this.showCust(ele._id)}}> Show</button></td>
+                                <td> <button class="button1" onClick={()=>{this.showDept(ele._id)}}> Show</button></td>
                                 
                                 <td>{<button  class="btn2" onClick={()=>{this.handleDelete(ele._id)}}>Delete</button>}</td>
                                     </tr>
@@ -89,15 +59,14 @@ class Department extends Component {
                             })
                         }
                   </table>
-        </div>)
-                }
+       
 
 
-                <div>
+        
             {
-                this.state.show?"":<button className="btn1"  onClick={()=>this.showForm()}> ADD</button> 
+            <button className="btn1"  onClick={()=>this.showForm()}> ADD</button> 
                 }
-               </div>
+               
     
 
             </div>

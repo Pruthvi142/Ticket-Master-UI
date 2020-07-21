@@ -84,17 +84,16 @@ div{
   background-color:white
 }
 .button1{
-  width:100px;
-  background-color:#008CBA;
+  background-color: dodgerblue;
   color: white;
   padding: 12px 10px;
-  margin: 8px 0;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
-  float: left;
+  width: 100px;
+  border-radius: 4px;
 }
-.input1[type=text],[type="Number"], select {
+
+.input1[type=text],[type="Number"], select,textarea {
   width: 40%;
   padding: 10px 10px;
   margin: 8px 0;
@@ -103,7 +102,73 @@ div{
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+
 .div1{
-  border-radius: 5px;
-  padding: 20px;
+  
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 30px;
+    width: 100%;
+}
+
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  right:89%;
+  height: 25px;
+  width: 25px;
+  background-color: #f2f2f2;
+  border-radius: 50%;
+}
+
+
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+}
+.topinput[type=text] {
+  float: right;
+  padding: 6px;
+  border: red;
+  background-color: burlywood;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+}
+h1.uppercase {
+ 
+  font-size: 28px;
+  font-family: "Times New Roman", Times, serif;
 }

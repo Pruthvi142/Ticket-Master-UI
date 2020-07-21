@@ -1,15 +1,13 @@
-const empReducer=(state=[],action)=>{
+const ticReducer=(state=[],action)=>{
     switch(state,action.type)
     {
-        case 'SET_EMP' : {
+        case 'SET_TIC' : {
             return state.concat(action.payload)
         }
-        case 'GET_EMP' :{
-
+        case 'GET_TIC':{
             return [].concat(action.payload)
-
-        } 
-        case 'EDIT_EMP':{
+        }
+        case 'EDIT':{
             return state.map((ele)=>{
                 if(ele._id==action.payload._id)
                 {
@@ -24,7 +22,6 @@ const empReducer=(state=[],action)=>{
         case 'DELETE':{
             return state.filter(ele=>ele._id !=action.payload._id)
         }
-        
     
         default:{
             return state
@@ -32,4 +29,4 @@ const empReducer=(state=[],action)=>{
     }
 }
 
-export default empReducer
+export default ticReducer

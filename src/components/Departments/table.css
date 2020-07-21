@@ -1,13 +1,13 @@
 .table1 {
-    border-collapse: collapse;
-    border-spacing: 0;
+   /* // border-collapse: collapse; */
+    border-spacing: 40px;
     width: 50%;
     border: 1px solid #ddd;
   }
   
   th, td {
     text-align: center;
-    padding: 16px;
+    padding: 10px;
   }
   
   th:first-child, td:first-child {

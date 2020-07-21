@@ -1,79 +1,31 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {startUpdateCust} from '../../Actions/custAction'
+ 
+function Showcust(props) {
+  console.log("custtick",props.tickets)
+  console.log("cust",props.customer)
 
-
-class Showcust extends Component {
-    constructor(props)
-    {
-        super(props)
-        this.state={
-            name:'',
-            email:'',
-            mobile:'',
-            edit:false
-        }
-    }
-    handleChange=(e)=>{
-        this.setState({[e.target.name]:e.target.value})
-
-    }
-    showForm=()=>{
-        this.setState({
-            show:true
-        })
-    }
-    handleSubmit=(e,props)=>{
-        e.preventDefault()
-        const formData={
-            username:this.state.username,
-            email:this.state.email,
-            mobile:this.state.mobile
-        }
-        this.props.dispatch(startUpdateCust(props.match.params.id,formData))
-        this.setState({
-            show:false
-        })
-        this.state={
-            name:'',
-            email:'',
-            mobile:''
-        }
-    }
-
-    render() {
-        console.log("one" ,this.props.customer)
-        return (
+// this method respossible for Redirect to Edit page 
+     const showForm=(id)=>{
+       props.history.push(`/EditCust/${id}`)
+     }
+       return (
             <div>
-               {
-                   this.state.show ? (
-                   <div>
-                         <form onSubmit={this.handlesubmit}>
+             <h1 className="uppercase"> { props.customer?.name} --{props.customer?.email}</h1> <br/>
+             <h1 className="uppercase"></h1>
+             
+             <button   class="btn"onClick={()=>showForm(props.customer?._id)}> Edit</button> 
+           </div>
+    
+            );
 
-<label>Name:</label> 
-<input type="text"  name="name" value={this.state.name} onChange={this.handleChange} ></input><br/>
-<label>Email:</label>
-<input type="text" name="email" value={this.state.email} onChange={this.handleChange} ></input><br/>
-<label>Mobile</label>
-<input type="Number" name="mobile" value={this.state.mobile} onChange={this.handleChange}  maxLength="10"></input><br/>
-
-<input type="submit" class="btn"/>
-</form>
-                        </div>):""
-               }
-                <div>
-            {
-                this.state.show?"":<button   class="btn"onClick={()=>this.showForm()}> Edit</button> 
-                }
-               </div>
-            </div>
-        );
-    }
 }
+// this method to selecting customer data from store 
 const mapStateToProps=(state,props)=>{
-   
     return{
-        customer:state.customers.find(ele=>ele._id==props.match.params.id)
+// to Find the particular customer based on Id  
+      customer:state.customers.find(ele=>ele._id==props.match.params.id),
+       tickets:state.Tickets.find(ele=>ele._id==props.match.params.id) 
     }
 }
 

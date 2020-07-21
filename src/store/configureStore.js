@@ -4,6 +4,7 @@ import userReducer from "../reducers/userReducer"
 import custReducer from "../reducers/custReducer"
 import deptReducer from "../reducers/deptReducer"
 import empReducer from "../reducers/empReducer"
+import ticReducer from "../reducers/ticReducer"
 
 
 const configureStore=()=>{
@@ -11,7 +12,8 @@ const configureStore=()=>{
         user:userReducer,
         customers:custReducer,
         departments:deptReducer,
-        Employees:empReducer
+        Employees:empReducer,
+        Tickets:ticReducer
       
         
     }),applyMiddleware(thunk))
